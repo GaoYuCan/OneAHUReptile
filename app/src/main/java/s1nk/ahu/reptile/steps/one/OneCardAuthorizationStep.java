@@ -1,4 +1,5 @@
-package s1nk.ahu.reptile.steps.wvpn;
+package s1nk.ahu.reptile.steps.one;
+
 
 import org.json.JSONObject;
 
@@ -16,14 +17,14 @@ import s1nk.ahu.reptile.steps.IStep;
 import s1nk.ahu.reptile.steps.IStepChain;
 import s1nk.ahu.reptile.steps.general.BasicStepChain;
 
-public class CardAuthorizationStep<T> implements IStep<T> {
+public class OneCardAuthorizationStep<T> implements IStep<T> {
     @Override
     public Ret<T> handle(IStepChain<T> chain) {
         // 获取 cookies
         String cookies = chain.getSimpleData("cookies", String.class);
         // cookies 不可能为空
         Request request = new Request.Builder()
-                .url("https://wvpn.ahu.edu.cn/https/77726476706e69737468656265737421e9f4408e237e69586b468ca88d1b203b/berserker-auth/cas/login/wisedu?targetUrl=https%3A%2F%2Fycard%2Eahu%2Eedu%2Ecn%2Fplat%2FshouyeUser")
+                .url("https://ycard.ahu.edu.cn/plat/shouyeUser")
                 .addHeader("Cookie", cookies)
                 .get()
                 .build();

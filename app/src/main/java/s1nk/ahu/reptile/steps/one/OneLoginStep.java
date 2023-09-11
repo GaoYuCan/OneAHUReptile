@@ -1,4 +1,5 @@
-package s1nk.ahu.reptile.steps.wvpn;
+package s1nk.ahu.reptile.steps.one;
+
 
 import android.util.Log;
 
@@ -20,7 +21,7 @@ import s1nk.ahu.reptile.steps.IStep;
 import s1nk.ahu.reptile.steps.IStepChain;
 import s1nk.ahu.reptile.steps.general.BasicStepChain;
 
-public class LoginStep<T> implements IStep<T> {
+public class OneLoginStep<T> implements IStep<T> {
     @Override
     public Ret<T> handle(IStepChain<T> chain) {
         // 判断是否已有 cookies
@@ -35,7 +36,7 @@ public class LoginStep<T> implements IStep<T> {
         final OkHttpClient client = BasicStepChain.httpClient;
         // 访问主页获取参数
         Request request = new Request.Builder()
-                .url("https://wvpn.ahu.edu.cn")
+                .url("https://one.ahu.edu.cn")
                 .get()
                 .build();
         try (Response response = client.newCall(request).execute()) {
@@ -56,7 +57,7 @@ public class LoginStep<T> implements IStep<T> {
                     .add("_eventId", "submit")
                     .build();
             request = new Request.Builder()
-                    .url("https://wvpn.ahu.edu.cn" + loginURL)
+                    .url("https://one.ahu.edu.cn" + loginURL)
                     .addHeader("Cookie", cookies)
                     .post(loginFormBody)
                     .build();
