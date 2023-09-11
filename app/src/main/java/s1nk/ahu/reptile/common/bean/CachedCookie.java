@@ -1,5 +1,7 @@
 package s1nk.ahu.reptile.common.bean;
 
+import androidx.annotation.NonNull;
+
 public class CachedCookie {
     private final String cookie;
     private final long expiredTime;
@@ -17,6 +19,7 @@ public class CachedCookie {
         return expiredTime < System.currentTimeMillis();
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "CachedCookie{" +

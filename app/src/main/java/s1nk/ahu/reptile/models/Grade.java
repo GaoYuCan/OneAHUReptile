@@ -1,5 +1,7 @@
 package s1nk.ahu.reptile.models;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class Grade {
@@ -24,6 +26,7 @@ public class Grade {
     public Grade() {
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Grade{" +

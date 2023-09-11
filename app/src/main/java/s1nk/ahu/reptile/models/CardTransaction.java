@@ -1,5 +1,7 @@
 package s1nk.ahu.reptile.models;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 
 public class CardTransaction {
@@ -22,6 +24,7 @@ public class CardTransaction {
     public CardTransaction() {
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "CardTransaction{" +

@@ -1,5 +1,7 @@
 package s1nk.ahu.reptile.models;
 
+import androidx.annotation.NonNull;
+
 public class Course {
     public String selectionId;
     public String courseId;
@@ -34,6 +36,7 @@ public class Course {
     public static final int COURSE_PARITY_WEEK_EVEN = 2;
     public static final int COURSE_PARITY_WEEK_NORMAL = 3;
 
+    @NonNull
     @Override
     public String toString() {
         return "Course{" +

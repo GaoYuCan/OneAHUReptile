@@ -1,4 +1,4 @@
-package s1nk.ahu.reptile.steps.wvpn;
+package s1nk.ahu.reptile;
 
 import android.util.Log;
 
@@ -13,25 +13,18 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import s1nk.ahu.reptile.common.utils.TriDES;
 import s1nk.ahu.reptile.common.bean.Ret;
 import s1nk.ahu.reptile.common.exception.LoginException;
-import s1nk.ahu.reptile.steps.IStep;
-import s1nk.ahu.reptile.steps.IStepChain;
+import s1nk.ahu.reptile.common.utils.TriDES;
 import s1nk.ahu.reptile.steps.general.BasicStepChain;
 
-public class LoginStep<T> implements IStep<T> {
-    @Override
-    public Ret<T> handle(IStepChain<T> chain) {
+public class OneLogin {
+    public static void doo() {
         // 判断是否已有 cookies
-        String cookies = chain.getSimpleData("cookies", String.class);
-        if (cookies != null) { // 已有 cookies 跳过登录
-            Log.e("reptile", "已有 Cookie 跳过登录");
-            return chain.proceed();
-        }
+        String cookies = "";
         // 登录
-        String studentID = chain.getSimpleData("studentID", String.class);
-        String password = chain.getSimpleData("password", String.class);
+        String studentID = "Y02114562";
+        String password = "1qwertyuiop.";
         final OkHttpClient client = BasicStepChain.httpClient;
         // 访问主页获取参数
         Request request = new Request.Builder()
@@ -68,15 +61,14 @@ public class LoginStep<T> implements IStep<T> {
                         StandardCharsets.UTF_8.name(), "");
                 String errorMessage = document.select("#errormsghide").text();
                 rsp.close();
-                return Ret.newFailedInstance(new LoginException(errorMessage));
+                Log.e("reptile", "loginfail" + errorMessage);
             }
             rsp.close();
             // 登录成功
-            chain.putSimpleData("cookies", cookies);
+
             Log.e("reptile", "登录成功");
         } catch (IOException e) {
-            return Ret.newFailedInstance(e);
+            Log.e("reptile", e.toString());
         }
-        return chain.proceed();
     }
 }

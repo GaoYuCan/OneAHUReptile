@@ -1,7 +1,5 @@
 package s1nk.ahu.reptile.steps.general;
 
-import android.util.Log;
-
 import java.util.HashMap;
 
 import s1nk.ahu.reptile.common.bean.CachedCookie;

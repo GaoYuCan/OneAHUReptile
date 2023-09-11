@@ -2,6 +2,8 @@ package s1nk.ahu.reptile.models;
 
 import android.accounts.Account;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class CardBalance {
@@ -25,6 +27,7 @@ public class CardBalance {
     }
 
 
+    @NonNull
     @Override
     public String toString() {
         return "CardBalance{" +
@@ -51,6 +54,7 @@ public class CardBalance {
         public CardAccount() {
         }
 
+        @NonNull
         @Override
         public String toString() {
             return "CardAccount{" +

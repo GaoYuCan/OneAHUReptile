@@ -23,7 +23,8 @@ public class CardAuthorizationStep<T> implements IStep<T> {
         String cookies = chain.getSimpleData("cookies", String.class);
         // cookies 不可能为空
         Request request = new Request.Builder()
-                .url("https://wvpn.ahu.edu.cn/https/77726476706e69737468656265737421e9f4408e237e69586b468ca88d1b203b/berserker-auth/cas/login/wisedu?targetUrl=https%3A%2F%2Fycard%2Eahu%2Eedu%2Ecn%2Fplat%2FshouyeUser")
+//                .url("https://wvpn.ahu.edu.cn/https/77726476706e69737468656265737421e9f4408e237e69586b468ca88d1b203b/berserker-auth/cas/login/wisedu?targetUrl=https%3A%2F%2Fycard%2Eahu%2Eedu%2Ecn%2Fplat%2FshouyeUser")
+                .url("https://ycard.ahu.edu.cn/plat/shouyeUser")
                 .addHeader("Cookie", cookies)
                 .get()
                 .build();
@@ -57,7 +58,7 @@ public class CardAuthorizationStep<T> implements IStep<T> {
             Response rsp = client.newCall(request).execute();
             String jsonStr = Objects.requireNonNull(rsp.body()).string();
             JSONObject json = new JSONObject(jsonStr);
-            String synjonesAuth = "bearer " +json.getString("access_token");
+            String synjonesAuth = "bearer ".concat(json.getString("access_token"));
             chain.putSimpleData("Synjones-Auth", synjonesAuth);
         } catch (Exception e) {
             return Ret.newFailedInstance(e);

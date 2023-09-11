@@ -1,6 +1,5 @@
 package s1nk.ahu.reptile.common.bean;
 
-
 public class Ret<T> {
     private final T data;
     private final Throwable error;

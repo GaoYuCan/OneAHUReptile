@@ -1,5 +1,7 @@
 package s1nk.ahu.reptile.models;
 
+import androidx.annotation.NonNull;
+
 public class CourseGrade {
     public String schoolYear;
     public int schoolTerm;
@@ -28,6 +30,7 @@ public class CourseGrade {
     public CourseGrade() {
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "CourseGrade{" +

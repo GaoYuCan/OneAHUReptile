@@ -1,5 +1,7 @@
 package s1nk.ahu.reptile.models;
 
+import androidx.annotation.NonNull;
+
 public class CampusNetQuery {
     public String userStatus;
     public int balance;
@@ -21,6 +23,7 @@ public class CampusNetQuery {
     public CampusNetQuery() {
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "CampusNetQuery{" +

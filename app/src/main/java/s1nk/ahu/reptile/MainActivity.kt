@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlin.concurrent.thread
-import kotlin.time.Duration
 
 class MainActivity : AppCompatActivity() {
     val TAG = "reptile"
@@ -12,26 +11,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         thread {
+//            OneLogin.doo()
             // 成绩
-            val gradeRet = ReptileClient.getGrade("this is studentID", "this is p4ssw0rd")
-            if (gradeRet.isSuccessful) {
+            val gradeRet = ReptileClient.getGrade("Y02114562", "1qwertyuiop.")
+            if (gradeRet.isSuccessful()) {
                 Log.e(TAG, gradeRet.data.toString())
             } else {
                 Log.e(TAG, "获取成绩失败", gradeRet.error)
             }
             // 课表
             val scheduleRet = ReptileClient.getSchedule(
-                "this is studentID", "this is p4ssw0rd",
+                "Y02114562", "1qwertyuiop.",
                 "2022-2023", 2
             )
-            if (scheduleRet.isSuccessful) {
+            if (scheduleRet.isSuccessful()) {
                 Log.e(TAG, scheduleRet.data.toString())
             } else {
                 Log.e(TAG, "获取课表失败", scheduleRet.error)
             }
             // 余额
             val cardBalanceRet =
-                ReptileClient.getCardBalance("this is studentID", "this is p4ssw0rd")
+                ReptileClient.getCardBalance("Y02114562", "1qwertyuiop.")
             if (cardBalanceRet.isSuccessful) {
                 Log.e(TAG, cardBalanceRet.data.toString())
             } else {
@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
             }
             // 账单
             val cardBillRet = ReptileClient.getCardBill(
-                "this is studentID",
-                "this is p4ssw0rd",
+                "Y02114562",
+                "1qwertyuiop.",
                 "2023-08-23",
                 "2023-08-24",
                 "187797"
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
             // 校园网状态
             val campusNetQueryRet =
-                ReptileClient.getCampusNetQuery("this is studentID", "this is p4ssw0rd")
+                ReptileClient.getCampusNetQuery("Y02114562", "1qwertyuiop.")
             if (campusNetQueryRet.isSuccessful) {
                 Log.e(TAG, campusNetQueryRet.data.toString())
             } else {

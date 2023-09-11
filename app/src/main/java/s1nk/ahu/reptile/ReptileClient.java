@@ -1,6 +1,5 @@
 package s1nk.ahu.reptile;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,42 +21,41 @@ import s1nk.ahu.reptile.steps.general.ScheduleStep;
 import s1nk.ahu.reptile.steps.wvpn.CardAuthorizationStep;
 import s1nk.ahu.reptile.steps.wvpn.JwxtAuthorizationStep;
 import s1nk.ahu.reptile.steps.wvpn.LoginStep;
+import simon.lazy.Lazy;
+import simon.lazy.LazyInitializer;
+import simon.lazy.SynchronizedLazy;
 
 public class ReptileClient {
-    private static final List<IStep<Grade>> JWXT_GRADE_STEPS = new ArrayList<>();
-    private static final List<IStep<List<Course>>> JWXT_SCHEDULE_STEPS = new ArrayList<>();
-    private static final List<IStep<CardBalance>> CARD_BALANCE_STEPS = new ArrayList<>();
-    private static final List<IStep<List<CardTransaction>>> CARD_BILL_STEPS = new ArrayList<>();
-    private static final List<IStep<CampusNetQuery>> CARD_CAMPUS_NET_QUERY_STEPS = new ArrayList<>();
-
-    static {
-        // JWXT_GRADE_STEPS
-        JWXT_GRADE_STEPS.add(new CacheStep<>());
-        JWXT_GRADE_STEPS.add(new LoginStep<>());
-        JWXT_GRADE_STEPS.add(new JwxtAuthorizationStep<>());
-        JWXT_GRADE_STEPS.add(new GradeStep());
-        // JWXT_SCHEDULE_STEPS
-        JWXT_SCHEDULE_STEPS.add(new CacheStep<>());
-        JWXT_SCHEDULE_STEPS.add(new LoginStep<>());
-        JWXT_SCHEDULE_STEPS.add(new JwxtAuthorizationStep<>());
-        JWXT_SCHEDULE_STEPS.add(new ScheduleStep());
-
-        // CARD_BALANCE_STEPS
-        CARD_BALANCE_STEPS.add(new CacheStep<>());
-        CARD_BALANCE_STEPS.add(new LoginStep<>());
-        CARD_BALANCE_STEPS.add(new CardAuthorizationStep<>());
-        CARD_BALANCE_STEPS.add(new CardBalanceStep());
-        // CARD_BILL_STEPS
-        CARD_BILL_STEPS.add(new CacheStep<>());
-        CARD_BILL_STEPS.add(new LoginStep<>());
-        CARD_BILL_STEPS.add(new CardAuthorizationStep<>());
-        CARD_BILL_STEPS.add(new CardBillStep());
-        // CARD_CAMPUS_NET_QUERY_STEPS
-        CARD_CAMPUS_NET_QUERY_STEPS.add(new CacheStep<>());
-        CARD_CAMPUS_NET_QUERY_STEPS.add(new LoginStep<>());
-        CARD_CAMPUS_NET_QUERY_STEPS.add(new CardAuthorizationStep<>());
-        CARD_CAMPUS_NET_QUERY_STEPS.add(new CampusNetQueryStep());
-    }
+    private static final List<IStep<Grade>> JWXT_GRADE_STEPS = List.of(
+            new CacheStep<>(),
+            new LoginStep<>(),
+            new JwxtAuthorizationStep<>(),
+            new GradeStep()
+    );
+    private static final List<IStep<List<Course>>> JWXT_SCHEDULE_STEPS = List.of(
+            new CacheStep<>(),
+            new LoginStep<>(),
+            new JwxtAuthorizationStep<>(),
+            new ScheduleStep()
+    );
+    private static final List<IStep<CardBalance>> CARD_BALANCE_STEPS = List.of(
+            new CacheStep<>(),
+            new LoginStep<>(),
+            new CardAuthorizationStep<>(),
+            new CardBalanceStep()
+    );
+    private static final List<IStep<List<CardTransaction>>> CARD_BILL_STEPS = List.of(
+            new CacheStep<>(),
+            new LoginStep<>(),
+            new CardAuthorizationStep<>(),
+            new CardBillStep()
+    );
+    private static final List<IStep<CampusNetQuery>> CARD_CAMPUS_NET_QUERY_STEPS = List.of(
+            new CacheStep<>(),
+            new LoginStep<>(),
+            new CardAuthorizationStep<>(),
+            new CampusNetQueryStep()
+    );
 
     public static Ret<Grade> getGrade(String studentID, String password) {
         Map<String, Object> params = new HashMap<>();
@@ -88,7 +86,7 @@ public class ReptileClient {
 
 
     public static Ret<List<CardTransaction>> getCardBill(String studentID, String password, String startDate,
-                                               String endDate, String account) {
+                                                         String endDate, String account) {
         Map<String, Object> params = new HashMap<>();
         params.put("studentID", studentID);
         params.put("password", password);

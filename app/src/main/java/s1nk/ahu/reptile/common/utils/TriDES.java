@@ -507,8 +507,8 @@ public class TriDES {
      */
     private static long permute(byte[] table, int srcWidth, long src) {
         long dst = 0;
-        for (int i = 0; i < table.length; i++) {
-            int srcPos = srcWidth - table[i];
+        for (byte b : table) {
+            int srcPos = srcWidth - b;
             dst = (dst << 1) | (src >> srcPos & 0x01);
         }
         return dst;

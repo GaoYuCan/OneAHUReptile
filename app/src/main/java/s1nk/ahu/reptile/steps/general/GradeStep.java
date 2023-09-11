@@ -36,7 +36,7 @@ public class GradeStep implements IStep<Grade> {
         boolean isOneAHU = chain.getSimpleData("isOneAHU", Boolean.class);
         String domain;
         if (isOneAHU) {
-            domain = "https://jwxt0.ahu.edu.cn";
+            domain = "https://jwxt8.ahu.edu.cn";
         } else {
             domain = "https://wvpn.ahu.edu.cn/https/77726476706e69737468656265737421fae05988777e69586b468ca88d1b203b";
         }

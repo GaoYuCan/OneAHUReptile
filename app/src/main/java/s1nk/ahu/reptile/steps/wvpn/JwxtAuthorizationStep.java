@@ -19,7 +19,7 @@ public class JwxtAuthorizationStep<T> implements IStep<T> {
         String cookies = chain.getSimpleData("cookies", String.class);
         // cookies 不可能为空
         Request request = new Request.Builder()
-                .url("https://wvpn.ahu.edu.cn/https/77726476706e69737468656265737421fae05988777e69586b468ca88d1b203b/login_cas.aspx")
+                .url("https://jwxt8.ahu.edu.cn/login_cas.aspx")
                 .addHeader("Cookie", cookies)
                 .get()
                 .build();
@@ -37,4 +37,5 @@ public class JwxtAuthorizationStep<T> implements IStep<T> {
         }
         return chain.proceed();
     }
+
 }
