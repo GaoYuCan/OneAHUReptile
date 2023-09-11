@@ -49,9 +49,9 @@ public class OneCardAuthorizationStep<T> implements IStep<T> {
                     .add("synAccessSource", "h5")
                     .build();
             request = new Request.Builder()
-                    .url("https://wvpn.ahu.edu.cn/https/77726476706e69737468656265737421e9f4408e237e69586b468ca88d1b203b/berserker-auth/oauth/token?vpn-12-o2-ycard.ahu.edu.cn")
+                    .url("https://ycard.ahu.edu.cn/berserker-auth/oauth/token?vpn-12-o2-ycard.ahu.edu.cn")
                     .addHeader("Cookie", cookies)
-                    .addHeader("Referer", "https://wvpn.ahu.edu.cn/https/77726476706e69737468656265737421e9f4408e237e69586b468ca88d1b203b")
+                    .addHeader("Referer", "https://ycard.ahu.edu.cn")
                     .addHeader("Authorization", "Basic bW9iaWxlX3NlcnZpY2VfcGxhdGZvcm06bW9iaWxlX3NlcnZpY2VfcGxhdGZvcm1fc2VjcmV0")
                     .post(getTokenForm)
                     .build();
